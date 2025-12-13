@@ -10,7 +10,7 @@ jobs:
         run: echo "Witaj w GitHub Actions!"
       - name: Test echo
         run: echo "sprawdzamy - $REPO_NAME"
---
+---
 name: CI
 
 on:
