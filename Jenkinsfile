@@ -1,9 +1,7 @@
 // flask uruchomiony z linii poleceń
-
 pipeline {
     agent any
-    
-    
+
     stages {
 
         stage('Checkout') {
@@ -11,33 +9,21 @@ pipeline {
                 checkout scm
             }
         }
-        
-stage('Run with venv') {
-    steps {
-        catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
-            timeout(time: 1, unit: 'MINUTES') {
-                sh '''
-                    python3 -m venv venv
-                    . venv/bin/activate
-                    pip install -r requirements.txt
-                    python3 app.py
-                ''' }
+
+        stage('Run with venv') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+                    timeout(time: 1, unit: 'MINUTES') {
+                        sh '''
+                            python3 -m venv venv
+                            . venv/bin/activate
+                            pip install -r requirements.txt
+                            python3 app.py
+                        '''
+                    }
+                }
             }
         }
-    
-        
-        
+
     }
-    
-   // abort zmieniamy w sukces na końcu
-   post {
-    aborted {
-      script {
-        // jeśli chcesz traktować timeout/abort jako sukces
-        currentBuild.result = 'SUCCESS'
-      }
-    }
-  }
-   
-   
 }
