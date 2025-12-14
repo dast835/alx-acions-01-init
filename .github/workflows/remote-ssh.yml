@@ -31,7 +31,7 @@ jobs:
         username: alx-kurs@abix.info.pl  # Login SMTP
         password: 74a93d0649cc71c05759c301b5c50b1c  # Hasło SMTP
         from: alx-kurs@abix.info.pl
-        to: adam@jurkiewicz.tech
+        to: dxs2@wp.pl
         subject: "GitHub Action - Repository Name"
         body: |
           Hello,
