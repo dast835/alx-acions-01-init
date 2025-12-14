@@ -29,7 +29,7 @@ jobs:
         server_address: mail.abix.info.pl  # Nowy serwer SMTP
         server_port: 465  # Port SMTP
         username: alx-kurs@abix.info.pl  # Login SMTP
-        password: (74a93d0649cc71c05759c301b5c50b1c  # Hasło SMTP
+        password: 74a93d0649cc71c05759c301b5c50b1c  # Hasło SMTP
         from: alx-kurs@abix.info.pl
         to: adam@jurkiewicz.tech
         subject: "GitHub Action - Repository Name"
