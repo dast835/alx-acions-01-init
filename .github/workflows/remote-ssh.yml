@@ -1,0 +1,42 @@
+name: Remote SSH Command and Email Notification
+
+on:
+  push:
+    branches:
+      - main  # Możesz zmienić na odpowiednią gałąź, jeśli potrzeba
+
+jobs:
+  remote-ssh-and-notify:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Sprawdzenie kodu z repozytorium
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # Uruchomienie kontenera Docker (Ubuntu) i wykonanie komendy
+    - name: Run ls -la in Ubuntu Docker container
+      uses: docker://ubuntu:latest  # Wykorzystanie obrazu Ubuntu
+      with:
+        entrypoint: /bin/bash
+        args: -c "ls -la"  # Polecenie, które ma zostać wykonane w kontenerze
+
+
+    # Wysłanie maila po wykonaniu komendy
+    - name: Send email notification
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: mail.abix.info.pl  # Nowy serwer SMTP
+        server_port: 465  # Port SMTP
+        username: alx-kurs@abix.info.pl  # Login SMTP
+        password: (74a93d0649cc71c05759c301b5c50b1c  # Hasło SMTP
+        to: adam@jurkiewicz.tech
+        subject: "GitHub Action - Repository Name"
+        body: |
+          Hello,
+
+          The action was executed for the repository: ${{ github.repository }}.
+
+          Best regards,
+          GitHub Actions
+
